@@ -85,15 +85,16 @@ function CartItem({
   price: number;
   quantity: number;
 }) {
-  const cartContext = use(CartContext);
-  if (cartContext == null) {
+  const cartContextValue = use(CartContext);
+  if (cartContextValue == null) {
     throw new Error('CartContext must be used within a CartProvider');
   }
 
+  const cartContext = cartContextValue;
   const priceSum = quantity * price;
 
   function removeItemFromCart() {
-    cartContext?.removeItem(id);
+    cartContext.removeItem(id);
   }
 
   return (
